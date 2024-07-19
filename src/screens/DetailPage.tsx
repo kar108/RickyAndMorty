@@ -98,6 +98,7 @@ function DetailPage({route}: any) {
           <Typography textColor="secondary">No of episodes:</Typography>
           <Typography>{details?.episode?.length}</Typography>
         </View>
+        
       </View>
     </View>
   );

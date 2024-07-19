@@ -59,55 +59,9 @@ function loaderConfig () {
   }
 }
 
-function useSnackbar () {
-  const { snackbar, setSnackbar } = useModal();
 
-  const show = (args: { type?: SnackbarType, message: string }) => {
-    const { type = SnackbarType.SUCCESS, message } = args;
-    setSnackbar({ type, message });
-  }
-
-  const hide = () => {
-    setSnackbar({ type: SnackbarType.NONE, message: "" });
-  }
-
-  return {
-    active: snackbar.type !== SnackbarType.NONE,
-    type: snackbar.type,
-    message: snackbar.message,
-    show,
-    hide,
-    types: SnackbarType
-  }
-}
-
-function snackbarConfig () {
-
-  const { snackbar } = useModal.getState();
-  const dispatch = useModal.setState;
-
-  const show = (args: { type?: SnackbarType, message: string }) => {
-    const { type = SnackbarType.SUCCESS, message } = args;
-    dispatch({ snackbar: { type, message }});
-  }
-
-  const hide = () => {
-    dispatch({ snackbar: { type: SnackbarType.NONE, message: "" }});
-  }
-
-  return {
-    active: snackbar.type !== SnackbarType.NONE,
-    type: snackbar.type,
-    message: snackbar.message,
-    show,
-    hide,
-    types: SnackbarType
-  }
-}
 
 export {
   useLoader,
   loaderConfig,
-  useSnackbar,
-  snackbarConfig
 }
