@@ -2,11 +2,13 @@ import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Navigation from './src/Navigation/Navigation';
+import Overlay from './src/components/Overlay';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
-        <Navigation />
+      <Overlay />
+      <Navigation />
     </SafeAreaView>
   );
 }

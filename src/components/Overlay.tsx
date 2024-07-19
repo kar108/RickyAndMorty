@@ -6,8 +6,6 @@ import { SnackbarType } from "../stores/types";
 import { COLORS, SIZES } from "../utils/constants";
 import { base } from "../assets/styles";
 import Typography from "./Typography";
-import Link from "./Link";
-import { useSelector } from "react-redux";
 
 const SNACK_DURATION = 5000;
 
@@ -46,40 +44,40 @@ function Overlay (): JSX.Element {
     if(!loader.active) return null;
     return(
       <View style={[container, align_center, justify_center, loaderStyle]}>
-        <ActivityIndicator color={COLORS.primary} size="large" />
+        <ActivityIndicator color={COLORS.white} size="large" />
       </View>
     );
   }
 
-  const renderSnackBar = () => {
-    if(!snackbar.active) return null;
-    return(
-      <SafeAreaView style={[container, styles.snackContainer]}>
-        <TouchableOpacity
-          onPress={snackbar.hide}
-          activeOpacity={1}
-          style={container}
-        />
-        <View style={[styles.snack, snackbarStyle]}>
-          <Typography
-            textColor="white"
-            size={SIZES.font}
-            // weight="BLD_I"
-            mb={0}
-            style={[w_80]}
-          >
-            {snackbar.message}
-          </Typography>
-          <Link
-            onPress={snackbar.hide}
-            style={styles.snackButton}
-          >
-            OK
-          </Link>
-        </View>
-      </SafeAreaView>
-    );
-  }
+  // const renderSnackBar = () => {
+  //   if(!snackbar.active) return null;
+  //   return(
+  //     <SafeAreaView style={[container, styles.snackContainer]}>
+  //       <TouchableOpacity
+  //         onPress={snackbar.hide}
+  //         activeOpacity={1}
+  //         style={container}
+  //       />
+  //       <View style={[styles.snack, snackbarStyle]}>
+  //         <Typography
+  //           textColor="white"
+  //           size={SIZES.font}
+  //           // weight="BLD_I"
+  //           mb={0}
+  //           style={[w_80]}
+  //         >
+  //           {snackbar.message}
+  //         </Typography>
+  //         <Link
+  //           onPress={snackbar.hide}
+  //           style={styles.snackButton}
+  //         >
+  //           OK
+  //         </Link>
+  //       </View>
+  //     </SafeAreaView>
+  //   );
+  // }
 
   return(
     <Modal
@@ -88,7 +86,7 @@ function Overlay (): JSX.Element {
       animationType={snackbar.active? "slide": "fade"}
     >
       {renderLoader()}
-      {renderSnackBar()}
+      {/* {renderSnackBar()} */}
     </Modal>
   );
 }

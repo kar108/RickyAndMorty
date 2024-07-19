@@ -149,8 +149,8 @@ function Input({
           {disabledIcon ? null : (
             <Icon
               name={icon.name}
-              width={2}
-              height={2}
+              width={3}
+              height={3}
               style={[iconStyle, base.ml_l]}
             />
           )}
@@ -184,8 +184,8 @@ function Input({
   };
 
   return (
-    <View style={[styles.container, style]}>
-      {renderLabel()}
+    <View>
+      {/* {renderLabel()} */}
       <View
         style={[
           styles.wrapper,
@@ -231,22 +231,21 @@ function Input({
 const styles = StyleSheet.create({
   container: {
     // marginBottom: DIMENSIONS.hp(0.0),
+    backgroundColor:'red',
   },
   wrapper: {
     width: '100%',
     position: 'relative',
-    marginBottom: DIMENSIONS.hp(0.2),
     borderColor: COLORS.white20,
     borderRadius: SIZES.xl,
     flexDirection: 'row',
-    // backgroundColor:COLORS.input,
   },
   input: {
     padding: isOs('ios') ? DIMENSIONS.wp(4) : DIMENSIONS.wp(3),
     fontFamily: FONTS.MED,
     fontSize: SIZES.font,
     width: '100%',
-    color:COLORS.secondary,
+    color:'white',
   },
   actionBox: {
     position: 'absolute',

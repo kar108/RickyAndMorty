@@ -1,9 +1,9 @@
 import {ImageSourcePropType} from 'react-native';
 
 // common icons
-// const logo = require('../assets/images/logo.png');
+const filter = require('../assets/images/filter.png');
 
 
 export const icons: Record<string, ImageSourcePropType> = {
- 
+    filter
 };
