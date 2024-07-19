@@ -9,4 +9,12 @@ const http = axios.create({
   },
 });
 
-export {http};
+
+const API = axios.create({
+  timeout: 15000,
+  headers: {
+    Accept: 'application/json',
+  },
+});
+
+export {http,API};
