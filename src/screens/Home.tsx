@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   RefreshControl,
   StyleSheet,
+  Keyboard,
 } from 'react-native';
 import {base, styles} from '../assets/styles';
 import {useAsync} from '../hooks/async';
@@ -14,8 +15,6 @@ import Typography from '../components/Typography';
 import Input from '../components/Input';
 import {useDebounce} from '../hooks';
 import {COLORS, SIZES} from '../utils/constants';
-import ThreeDots from '../components/ThreeDot';
-import Button from '../components/Button';
 import BareBottomSheet from '../components/BareBottomSheet';
 import {useNavigation} from '@react-navigation/native';
 
@@ -47,6 +46,7 @@ function Home() {
       setData(res?.data?.results);
     }
     setMaxPage(res?.data?.info?.pages);
+    Keyboard.dismiss();
   };
 
   const {refetch: rel} = useAsync(GetCharacters, {
@@ -66,7 +66,7 @@ function Home() {
     loader: 'GLOBAL',
   });
 
-  const {p_xs, bg_secondary, mt_s} = base;
+  const {p_xs, bg_secondaryAlt, mt_s} = base;
 
   const renderCards = ({item}: {item: Character}) => {
     return (
@@ -241,6 +241,8 @@ function Home() {
           onChange={(e: string) => {
             setSearchKey(e);
           }}
+          autoCapitalize='none'
+          placeholderTextColor='white'
           placeholder="search by name"
           iconStyle={{tintColor: 'white'}}
           icon={{
@@ -249,7 +251,7 @@ function Home() {
               setShow(true);
             },
           }}
-          wrapperStyle={[bg_secondary, mt_s]}
+          wrapperStyle={[bg_secondaryAlt, mt_s]}
         />
         <BareBottomSheet
           visible={show}
@@ -314,10 +316,9 @@ const pagestyles = StyleSheet.create({
   },
   btn: {
     backgroundColor: COLORS.secondary,
-    width: '20%',
-    paddingVertical: 5,
     alignItems: 'center',
     borderRadius: 10,
+    padding:'2.5%'
   },
 });
 

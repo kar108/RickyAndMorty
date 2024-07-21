@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import {base, styles} from '../assets/styles';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, Pressable} from 'react-native';
 import Typography from '../components/Typography';
 import {useAsync} from '../hooks/async';
 import {GetLocationDetails} from '../services/locations';
 import {GetEpisodes} from '../services/Episodes';
+import Icon from '../components/Icon';
+import { useNavigation } from '@react-navigation/native';
 
 function DetailPage({route}: any) {
   const details: Character = route?.params.details;
+  const navigation = useNavigation<any>();
 
   const [data, setData] = useState<LocationDetails>();
   const [episodes, setEpisodes] = useState<Episode>();
@@ -45,11 +48,20 @@ function DetailPage({route}: any) {
           source={{uri: details?.image}}
           style={{width: '100%', height: '100%', resizeMode: 'stretch'}}
         />
+        <Pressable onPress={()=>{navigation.goBack()}}  style={{position: 'absolute',shadowColor:'black',left:20,top:20,shadowOpacity:.5}}>
+          <Icon
+            name="back"
+            height={5}
+            width={4}
+          />
+        </Pressable>
       </View>
       <View style={[pagestyles.BottomContainer]}>
-        <Typography weight="BLD" size={30}>
-          {details?.name}
-        </Typography>
+        <View style={{width: '90%'}}>
+          <Typography weight="BLD" size={30}>
+            {details?.name}
+          </Typography>
+        </View>
 
         <View style={[row, align_center, {gap: 5}]}>
           <View
@@ -93,12 +105,6 @@ function DetailPage({route}: any) {
           <Typography textColor="secondary">First seen in episode:</Typography>
           <Typography>{episodes?.name} </Typography>
         </View>
-
-        <View style={{gap: 5, marginTop: '5%'}}>
-          <Typography textColor="secondary">No of episodes:</Typography>
-          <Typography>{details?.episode?.length}</Typography>
-        </View>
-        
       </View>
     </View>
   );
@@ -112,7 +118,6 @@ const pagestyles = StyleSheet.create({
     backgroundColor: '#141414',
     flex: 1,
     padding: '5%',
-    flexWrap: 'wrap',
   },
   dot: {
     height: 15,
